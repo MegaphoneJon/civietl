@@ -408,5 +408,5 @@ $importSettings = [
       'civi_primary_entity' => 'Attachment',
     ],
     'writer_type' => 'CiviCrmApi3',
-  ]
+  ],
 ];
