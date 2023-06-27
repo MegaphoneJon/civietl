@@ -28,7 +28,7 @@ class CivicrmApi3 implements WriterInterface {
         $this->errorFound = TRUE;
         $this->logger->log("Error, " . implode(', ', array_keys($row)));
       }
-      $this->logger->log("\"Error: " . $e->getMessage() . "\", " . implode(', ', $row));
+      $this->logger->log("\"Error: " . $e->getMessage() . "\", " . json_encode($row));
     }
   }
 
