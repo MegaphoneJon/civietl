@@ -9,6 +9,10 @@ class Attachments {
    * Do all the transforms associated with this step.
    */
   public function transforms(array $rows) : array {
+    // Filter to just gifts.
+    $rows = array_filter($rows, function($row) {
+      return $row['Related Item Type'] == 'Gift';
+    });
     // Get the contribution ID.
     $rows = T\CiviCRM::lookup($rows, 'Contribution', ['Related Item ID' => 'Legacy_Contribution_Data.LGL_Gift_ID'], ['id']);
     // Rename some columns that are one-to-one with Civi.
@@ -16,16 +20,14 @@ class Attachments {
       'id' => 'entity_id',
       'Document Name' => 'name',
     ]);
-    // Filter to just gifts.
+    // Deleted contributions don't get deleted attachments, filter them out.
     $rows = array_filter($rows, function($row) {
-      return $row['Related Item Type'] == 'Gift';
+      return $row['entity_id'];
     });
     // Get the file extension.
     foreach ($rows as $key => $row) {
       $rows[$key]['extension'] = substr($row['name'], strrpos($row['name'], '.') + 1);
     }
-    $temp = array_column($rows, 'extension');
-    $unique = array_unique($temp);
     // Get MIME type from extension.
     $rows = T\ValueTransforms::valueMapper($rows, 'extension', $this->mimeTypesMap(), 'mime_type');
     // Set up the move-file option (which is the source of the ).
