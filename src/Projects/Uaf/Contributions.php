@@ -95,7 +95,7 @@ class Contributions {
     }
     // Separate the rows in which the Contact is a Third Part Giving Vehicle. These Contributions will not be imported by the civietl.
     $rowsWithThirdParty = array_filter($rowsWithVehicle, function($row) {
-      return isset($row['contact_sub_type']) && $row['contact_sub_type'][0] === 'Third Party Giving Vehicle';
+      return isset($row['contact_sub_type']) && $row['contact_sub_type'][0] === 'Third_Party_Giving_Vehicle';
     });
     if ($rowsWithThirdParty) {
       $rowsWithThirdParty = T\Columns::deleteAllColumnsExcept($rowsWithThirdParty, ['Legacy_Contribution_Data.LGL_Gift_ID']);
