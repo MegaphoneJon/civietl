@@ -20,6 +20,7 @@ class Phones {
       'Phone Type' => 'location_type_id:label',
       'Is Preferred?' => 'is_primary',
     ]);
+    $rows = T\ValueTransforms::valueMapper($rows, 'is_primary', ['false' => 0, 'true' => 1]);
     $rows = T\Columns::newColumnWithConstant($rows, 'phone_type_id:label', 'Phone');
     $rows = T\ValueTransforms::valueMapper($rows, 'location_type_id:label', ['Fax' => 'Fax', 'Mobile' => 'Mobile'], 'phone_type_id:label');
     $rows = T\ValueTransforms::valueMapper($rows, 'location_type_id:label', ['Fax' => 'Work', 'Mobile' => 'Main']);

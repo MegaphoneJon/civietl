@@ -23,6 +23,7 @@ class Emails {
       'Email Type' => 'location_type_id:label',
       'Is Preferred?' => 'is_primary',
     ]);
+    $rows = T\ValueTransforms::valueMapper($rows, 'is_primary', ['false' => 0, 'true' => 1]);
     // Create any missing website types in the option values table.
     $locationTypes = T\RowFilters::getUniqueValues($rows, 'location_type_id:label');
     T\CiviCRM::createLocationTypes($locationTypes);

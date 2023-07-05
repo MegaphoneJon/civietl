@@ -33,6 +33,7 @@ class Addresses {
     ]);
     $rows = T\Columns::deleteColumns($rows, ['Constituent Name', 'LGL Address ID', 'County', 'Seasonal from', 'Seasonal to', 'Is Valid?', 'Street']);
 
+    $rows = T\ValueTransforms::valueMapper($rows, 'is_primary', ['false' => 0, 'true' => 1]);
     // CLEANUP
     // Trim every field.
     $rows = T\Text::trim($rows, array_keys(reset($rows)));
