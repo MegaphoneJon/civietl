@@ -54,16 +54,6 @@ $importSettings = [
       'civi_primary_entity' => 'Contact',
     ],
   ],
-  'CommunicationPreferences' => [
-    'readerOptions' => [
-      'file_path' => "$workroot/raw data/full_archive/constituents.csv",
-      'data_primary_key' => 'LGL Constituent ID',
-    ],
-    'writerOptions' => [
-      'file_path' => "$workroot/data/contacts.csv",
-      'civi_primary_entity' => 'Contact',
-    ],
-  ],
   // 'Salutations' => [
   //   'readerOptions' => [
   //     'file_path' => "$workroot/raw data/full_archive/constituents.csv",
@@ -108,7 +98,9 @@ $importSettings = [
     ],
     'writerOptions' => [
       'civi_primary_entity' => 'Address',
+      'file_path' => "$workroot/data/addresses.csv",
     ],
+    // 'writer_type' => 'CsvWriter',
   ],
   'FixedAddresses' => [
     'readerOptions' => [
@@ -397,6 +389,16 @@ $importSettings = [
     ],
     'writerOptions' => [
       'civi_primary_entity' => 'Relationship',
+    ],
+  ],
+  'CommunicationPreferences' => [
+    'readerOptions' => [
+      'file_path' => "$workroot/raw data/full_archive/constituents.csv",
+      'data_primary_key' => 'LGL Constituent ID',
+    ],
+    'writerOptions' => [
+      'file_path' => "$workroot/data/contacts.csv",
+      'civi_primary_entity' => 'Contact',
     ],
   ],
   'Attachments' => [
